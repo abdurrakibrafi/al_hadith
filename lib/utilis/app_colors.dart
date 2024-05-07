@@ -3,14 +3,6 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static LinearGradient gradientBg = LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: [
-      Color(0xFF97ABFF),
-      Color(0xFF123597),
-    ],
-  );
-  static Color buttonColor = Color(0xFF97ABFF);
-  static Color buttonColorTwo = Color(0xFF123597);
+  static Color mainColor = Color(0xFF118c6f);
+  static Color backgroundColor = Color(0xFFf4f4f4);
 }

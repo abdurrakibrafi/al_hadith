@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:weather_app/view/home_view/home_view.dart';
+import 'package:weather_app/test.dart';
+import 'package:weather_app/view/splash%20_view/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
       builder: (_, __) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Weather App With Bloc',
-          home: HomePageView(),
+          title: 'IRD Foundation Task',
+          home: SplashView(),
         );
       },
     );
