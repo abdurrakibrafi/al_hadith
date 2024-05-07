@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_app/utilis/app_colors.dart';
+import 'package:weather_app/utilis/app_string.dart';
 
 class DrawerContentPart extends StatelessWidget {
   DrawerContentPart({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class DrawerContentPart extends StatelessWidget {
                   ),
                   SizedBox(width: 5),
                   Text(
-                    "Content Settings",
+                    AppString.settingsTwo,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -48,9 +49,9 @@ class DrawerContentPart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Arbi",
+                      AppString.arbiDekhan,
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
                     AdvancedSwitch(
                       controller: _controller,
@@ -72,9 +73,9 @@ class DrawerContentPart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Arbi",
+                      AppString.joborDekhan,
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
                     AdvancedSwitch(
                       controller: _controller,

@@ -9,7 +9,10 @@ import 'package:weather_app/controllers/database_helper_controller.dart';
 import 'package:weather_app/utilis/app_colors.dart';
 import 'package:weather_app/widgets/bottom_fuction_widget.dart';
 import 'package:weather_app/widgets/common_widget/custom_app_bar_widget.dart';
-import 'package:weather_app/widgets/drawer_content_part_widget.dart';
+import 'package:weather_app/widgets/drawer_widget/custom_end_drawer_widget.dart';
+import 'package:weather_app/widgets/drawer_widget/drawer_content_part_two_widget.dart';
+import 'package:weather_app/widgets/drawer_widget/drawer_content_part_widget.dart';
+import 'package:weather_app/widgets/drawer_widget/drawer_content_three_part_widget.dart';
 import 'package:weather_app/widgets/hadis_container_widget.dart';
 import 'package:weather_app/widgets/odday_container_widget.dart';
 import 'package:weather_app/widgets/show_model_buttom_widget.dart';
@@ -34,50 +37,7 @@ class HadithDetailsView extends StatelessWidget {
             _scaffoldKey.currentState?.openEndDrawer();
           },
         ),
-        endDrawer: Drawer(
-          backgroundColor: AppColors.backgroundColor,
-          width: Get.width / 1.2,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              Container(
-                height: 70,
-                child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: Colors.grey,
-                      ),
-                      Text("Settings"),
-                      Icon(
-                        Icons.settings,
-                        color: Colors.grey,
-                        size: 30,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              /// item one
-              DrawerContentPart(),
-
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  // Handle item tap
-                },
-              ),
-              // Add more list items as needed
-            ],
-          ),
-        ),
+        endDrawer: CustomDrawerWidget(),
         body: SingleChildScrollView(
           child: Container(
             width: Get.width,
