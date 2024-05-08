@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:weather_app/widgets/bottom_sheet_title_widget.dart';
 
 void showCustomModalBottomSheet(BuildContext context, VoidCallback copyBangla,
-    VoidCallback copyArbi, VoidCallback screenShot) {
+    VoidCallback copyArbi, VoidCallback reportOnTap, VoidCallback shareText) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
@@ -72,21 +72,23 @@ void showCustomModalBottomSheet(BuildContext context, VoidCallback copyBangla,
               BottomSheetTitleWidget(
                 icon: Icons.image,
                 title: 'স্কিনশট শেয়ার',
-                onTap: () {
-                  screenShot();
-                },
+                onTap: () {},
               ),
               SizedBox(height: 12.h),
               BottomSheetTitleWidget(
                 icon: Icons.share,
                 title: 'টেক্সট শেয়ার',
-                onTap: () {},
+                onTap: () {
+                  shareText();
+                },
               ),
               SizedBox(height: 12.h),
               BottomSheetTitleWidget(
                 icon: Icons.info_outline,
                 title: 'রিপোর্ট',
-                onTap: () {},
+                onTap: () {
+                  reportOnTap();
+                },
               ),
             ],
           ),

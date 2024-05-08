@@ -44,7 +44,8 @@ dependencies:
   flutter_advanced_switch: ^3.1.0
   material_segmented_control: ^5.0.1
   custom_sliding_segmented_control: ^1.8.2
-  #  share_plus: ^9.0.0
+  url_launcher: ^6.2.6
+  share_plus: ^9.0.0
 #  screenshot: ^2.3.0
 
 

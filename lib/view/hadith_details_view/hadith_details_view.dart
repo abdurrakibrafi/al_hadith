@@ -2,23 +2,20 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/controllers/database_helper_controller.dart';
 import 'package:weather_app/utilis/app_colors.dart';
-import 'package:weather_app/widgets/bottom_fuction_widget.dart';
+import 'package:weather_app/widgets/bottom_function_widget.dart';
 import 'package:weather_app/widgets/common_widget/custom_app_bar_widget.dart';
 import 'package:weather_app/widgets/drawer_widget/custom_end_drawer_widget.dart';
-import 'package:weather_app/widgets/drawer_widget/drawer_content_part_two_widget.dart';
-import 'package:weather_app/widgets/drawer_widget/drawer_content_part_widget.dart';
-import 'package:weather_app/widgets/drawer_widget/drawer_content_three_part_widget.dart';
 import 'package:weather_app/widgets/hadis_container_widget.dart';
 import 'package:weather_app/widgets/odday_container_widget.dart';
 import 'package:weather_app/widgets/show_model_buttom_widget.dart';
 
 class HadithDetailsView extends StatelessWidget {
   HadithDetailsView({Key? key}) : super(key: key);
+
   final DatabaseHelperController controller =
       Get.put(DatabaseHelperController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -78,14 +75,26 @@ class HadithDetailsView extends StatelessWidget {
                             narrator: "${narrator} থেকে বর্ণি",
                             banglaText: banglaText,
                             moreBtn: () {
-                              showCustomModalBottomSheet(context, () {
-                                BottomSheetFunction.copyBangla(banglaText);
-                              }, () {
-                                BottomSheetFunction.arbiCopy(arbicText);
-                              }, () {
-                                // BottomSheetFunction.screenShot(
-                                //     context, HadithDetailsView());
-                              });
+                              showCustomModalBottomSheet(
+                                context,
+                                () {
+                                  BottomSheetFunction.copyBangla(banglaText);
+                                },
+                                () {
+                                  BottomSheetFunction.arbiCopy(arbicText);
+                                },
+                                () {
+                                  BottomSheetFunction.sendEmail(
+                                    'recipient@example.com',
+                                    'Subject of the Email',
+                                    'Body of the Email',
+                                  );
+                                },
+                                () {
+                                  BottomSheetFunction.shareText(
+                                      arbicText, banglaText);
+                                },
+                              );
                             },
                             hadithNumber:
                                 'হাদিস ${String.fromCharCode(0x09E7 + index)}',

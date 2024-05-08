@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:weather_app/utilis/toast_message.dart';
 
@@ -20,11 +22,20 @@ class BottomSheetFunction {
     ToastUtils.showToast(msg: "আরবি টেক্সট কপি হয়েছে");
   }
 
-  // static void screenShot(BuildContext context, Widget widget) async {
-  //   final image = await screenshotController.captureFromWidget(
-  //     widget,
-  //     pixelRatio: 2,
-  //   );
-  //   Share.shareXFiles([XFile.fromData(image, mimeType: "png")]);
-  // }
+  static void sendEmail(
+      String emailAddress, String subject, String body) async {
+    final Uri launchUri = Uri(
+      scheme: 'mailto',
+      path: emailAddress,
+      queryParameters: {
+        'subject': subject,
+        'body': body,
+      },
+    );
+    await launchUrl(launchUri);
+  }
+
+  static void shareText(String text, String textTwo) {
+    Share.share(text, subject: textTwo);
+  }
 }
