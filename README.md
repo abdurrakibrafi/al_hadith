@@ -1,6 +1,12 @@
-# weather_app
+## al_hadith
+# Details page features output given below :
 
-A new Flutter project.
+# Output Screenshot-
+<p><img src="assets/one number.png" width=270px hspace="10">
+<img src="assets/two.png" width=550px hspace="10" >
+</p>
+
+
 
 ## Getting Started
 
