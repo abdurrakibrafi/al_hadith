@@ -2,10 +2,14 @@
 # Details page features output given below :
 
 # Output Screenshot-
-<p><img src="assets/one number.png" width=270px hspace="10">
-<img src="assets/two.png" width=550px hspace="10" >
+<p><img src="assets/images/one.jpg" width=270px hspace="10">
+<img src="assets/images/two.jpg" width=270px hspace="10" >
 </p>
-
+<p><img src="assets/images/three.jpg" width=270px hspace="10">
+<img src="assets/images/four.jpg" width=270px hspace="10" >
+</p>
+<p><img src="assets/images/five.jpg" width=270px hspace="10">
+</p>
 
 
 ## Getting Started
