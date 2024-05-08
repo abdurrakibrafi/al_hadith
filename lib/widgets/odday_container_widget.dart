@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_super_parameters
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +46,7 @@ class OddayContainerWidget extends StatelessWidget {
                       ? TextSpan(
                           text: " $title",
                           style: TextStyle(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 15.h,
                             fontFamily: "bangla",

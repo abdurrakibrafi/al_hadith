@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:weather_app/controllers/theme_controller.dart';
 import 'package:weather_app/utilis/app_colors.dart';
 import 'package:weather_app/utilis/app_string.dart';
 
@@ -18,7 +17,6 @@ class DrawerThreeContentPart extends StatefulWidget {
 
 class _DrawerThreeContentPartState extends State<DrawerThreeContentPart> {
   final _controller = ValueNotifier<bool>(false);
-  final ThemeController _themeController = Get.put(ThemeController());
 
   int age = 10;
   @override
@@ -66,7 +64,6 @@ class _DrawerThreeContentPartState extends State<DrawerThreeContentPart> {
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
                     AdvancedSwitch(
-                      controller: _controller,
                       activeColor: AppColors.mainColor.withOpacity(0.4),
                       inactiveColor: Colors.grey,
                       borderRadius: BorderRadius.all(const Radius.circular(15)),
@@ -74,9 +71,7 @@ class _DrawerThreeContentPartState extends State<DrawerThreeContentPart> {
                       height: 20.0,
                       enabled: true,
                       disabledOpacity: 0.5,
-                      // onChanged: (value) {
-                      //   _themeController.toggleTheme();
-                      // },
+                      onChanged: (value) {},
                     ),
                   ],
                 ),

@@ -18,7 +18,7 @@ class AppTextStyle {
       fontFamily: "bangala");
 
   static final TextStyle smallText = _textStyle.copyWith(
-      fontSize: 14,
+      fontSize: 13,
       fontWeight: FontWeight.w200,
       fontFamily: "bangala",
       color: Colors.black.withOpacity(0.7));

@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/controllers/database_helper_controller.dart';
 import 'package:weather_app/utilis/app_colors.dart';
@@ -19,22 +18,26 @@ class HadithDetailsView extends StatelessWidget {
   final DatabaseHelperController controller =
       Get.put(DatabaseHelperController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final _controller = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.mainColor,
-        key: _scaffoldKey,
-        appBar: CustomAppBar(
-          title: 'সহিহ বুখারী',
-          subTitle: 'ওহীর সূচনা অধ্যায়',
-          onTap: () {
-            _scaffoldKey.currentState?.openEndDrawer();
-          },
-        ),
-        endDrawer: CustomDrawerWidget(),
+        child: Scaffold(
+      backgroundColor: AppColors.mainColor,
+      key: _scaffoldKey,
+      endDrawer: CustomDrawerWidget(),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            CustomAppBar(
+              title: 'সহিহ বুখারী',
+              subTitle: 'ওহীর সূচনা অধ্যায়',
+              onTap: () {
+                _scaffoldKey.currentState?.openEndDrawer();
+              },
+            ),
+          ];
+        },
         body: SingleChildScrollView(
           child: Container(
             width: Get.width,
@@ -46,7 +49,7 @@ class HadithDetailsView extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(15.0.h, 1.h, 15.h, 0),
+              padding: EdgeInsets.fromLTRB(15.0, 1.0, 15.0, 0),
               child: Obx(() {
                 if (controller.isLoading.value) {
                   return Center(child: CircularProgressIndicator());
@@ -54,53 +57,75 @@ class HadithDetailsView extends StatelessWidget {
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: controller.sectionTitles.length,
+                    itemCount: _calculateMaxItemCount(),
                     itemBuilder: (context, index) {
-                      var arbicText = controller.hadithList![index]['ar'];
-                      var narrator = controller.hadithList![index]['narrator'];
-                      var banglaText = controller.hadithList![index]['bn'];
+                      if (index % 2 == 0) {
+                        var sectionTitleIndex = index ~/ 2;
+                        if (sectionTitleIndex <
+                            controller.sectionTitles.length) {
+                          var sectionTitle =
+                              controller.sectionTitles[sectionTitleIndex];
+                          return Column(
+                            children: [
+                              SizedBox(height: 10),
+                              OddayContainerWidget(
+                                title: sectionTitle['title'],
+                                subTitle: sectionTitle['preface'],
+                                number: sectionTitle['number'],
+                              ),
+                            ],
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      } else {
+                        var hadithIndex = (index - 1) ~/ 2;
+                        if (hadithIndex < controller.hadithList!.length) {
+                          var arbiText =
+                              controller.hadithList![hadithIndex]['ar'];
+                          var banglaText =
+                              controller.hadithList![hadithIndex]['bn'];
 
-                      return Column(
-                        children: [
-                          SizedBox(height: 10.h),
-                          OddayContainerWidget(
-                            title: controller.sectionTitles[index]['title'],
-                            subTitle: controller.sectionTitles[index]
-                                ['preface'],
-                            number: controller.sectionTitles[index]['number'],
-                          ),
-                          SizedBox(height: 10.h),
-                          HadisContainerWidget(
-                            ar: arbicText ?? "",
-                            narrator: "${narrator} থেকে বর্ণি",
-                            banglaText: banglaText,
-                            moreBtn: () {
-                              showCustomModalBottomSheet(
-                                context,
-                                () {
-                                  BottomSheetFunction.copyBangla(banglaText);
-                                },
-                                () {
-                                  BottomSheetFunction.arbiCopy(arbicText);
-                                },
-                                () {
-                                  BottomSheetFunction.sendEmail(
-                                    'recipient@example.com',
-                                    'Subject of the Email',
-                                    'Body of the Email',
+                          return Column(
+                            children: [
+                              SizedBox(height: 10),
+                              HadisContainerWidget(
+                                ar: arbiText ?? "",
+                                narrator:
+                                    "${controller.hadithList![hadithIndex]['narrator']} থেকে বর্ণিত",
+                                banglaText: banglaText,
+                                moreBtn: () {
+                                  showCustomModalBottomSheet(
+                                    context,
+                                    () {
+                                      BottomSheetFunction.copyBangla(
+                                          banglaText);
+                                    },
+                                    () {
+                                      BottomSheetFunction.arbiCopy(arbiText);
+                                    },
+                                    () {
+                                      BottomSheetFunction.sendEmail(
+                                        'recipient@example.com',
+                                        'Subject of the Email',
+                                        'Body of the Email',
+                                      );
+                                    },
+                                    () {
+                                      BottomSheetFunction.shareText(
+                                          arbiText, banglaText);
+                                    },
                                   );
                                 },
-                                () {
-                                  BottomSheetFunction.shareText(
-                                      arbicText, banglaText);
-                                },
-                              );
-                            },
-                            hadithNumber:
-                                'হাদিস ${String.fromCharCode(0x09E7 + index)}',
-                          ),
-                        ],
-                      );
+                                hadithNumber:
+                                    'হাদিস ${String.fromCharCode(0x09E7 + hadithIndex)}',
+                              ),
+                            ],
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      }
                     },
                   );
                 }
@@ -109,6 +134,12 @@ class HadithDetailsView extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
+  }
+
+  int _calculateMaxItemCount() {
+    int sectionTitlesCount = controller.sectionTitles.length;
+    int hadithListCount = controller.hadithList!.length;
+    return sectionTitlesCount + hadithListCount;
   }
 }

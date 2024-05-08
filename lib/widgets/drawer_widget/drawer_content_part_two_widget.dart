@@ -114,7 +114,9 @@ class _DrawerTwoContentPartState extends State<DrawerTwoContentPart> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(AppString.kingFadah),
+                              Text(
+                                AppString.kingFadah,
+                              ),
                               Icon(Icons.keyboard_arrow_down_rounded)
                             ],
                           ),

@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SliverAppBar(
       leading: IconButton(
         icon: Icon(
           Icons.arrow_back_ios_new,
@@ -27,9 +27,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           Navigator.of(context).pop();
         },
       ),
+      expandedHeight: 55,
+      floating: true,
+      snap: true,
       backgroundColor: AppColors.mainColor,
       title: Padding(
-        padding: EdgeInsets.only(top: 12.0.h),
+        padding: EdgeInsets.only(top: 7.0.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
